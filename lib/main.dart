@@ -1,2 +1,1 @@
-//na char hajar koti taka kichui na
-
+// bhagaban ka diya hua sabkuch hey doulat hei showrat hei ijjat hei
