@@ -184,14 +184,20 @@ class HomeActivity extends StatelessWidget {
           },
         ),
         body:
-        ListView.builder( itemCount: data.length,itemBuilder: (context, index) {
+        GridView.builder( gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1 , crossAxisSpacing: 10),
+            itemCount: data.length,itemBuilder: (context, index) {
           return GestureDetector(
-            child: Container(
-              height: 250,
-              // width: 50,//wont work if fit property is present in Image widget
-              child: Image.network(data[index]['Image']??'https://img.freepik.com/free-photo/beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=360&t=st=1694798221~exp=1694798821~hmac=0bae47443eb62f7f11bfe0764097c886faa3b02fdb8fdae2e1a9d163eba6b343',fit: BoxFit.fill),
+            child:
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 250,
+                // width: 50,//wont work if fit property is present in Image widget
+                child: Image.network(data[index]['Image']??'https://img.freepik.com/free-photo/beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=360&t=st=1694798221~exp=1694798821~hmac=0bae47443eb62f7f11bfe0764097c886faa3b02fdb8fdae2e1a9d163eba6b343',fit: BoxFit.fill),
+              ),
             ),
             onDoubleTap: (){mySnackbar(context, data[index]['name']);},
+
           );
         }
         )
