@@ -2,6 +2,13 @@ import 'dart:ffi' as ffi;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:module_6/activity1.dart';
+import 'package:module_6/fragment/add.dart';
+import 'package:module_6/fragment/connected.dart';
+import 'package:module_6/fragment/gift.dart';
+import 'package:module_6/fragment/home.dart';
+import 'package:module_6/fragment/setting.dart';
+import 'package:module_6/fragment/wallet.dart';
 
 main()
 {
@@ -101,7 +108,9 @@ class HomeActivity extends StatelessWidget {
 
 
 
-    return Scaffold(
+    return DefaultTabController(length: 5, child:
+
+      Scaffold(
         appBar: AppBar(
           title: Text('Module 6 '),
           // leading: Icon(Icons.adb_outlined),
@@ -113,7 +122,19 @@ class HomeActivity extends StatelessWidget {
             }, icon: Icon(Icons.home)),
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           ],
+          bottom: TabBar(
+            isScrollable: true,
+            tabs: [
+              Tab(icon: Icon(Icons.home),child: Text('Home'),),
+              Tab(icon: Icon(Icons.person_add_alt_sharp),child: Text('Add'),),
+              Tab(icon: Icon(Icons.settings),child: Text('Setting'),),
+              Tab(icon: Icon(Icons.wallet),child: Text('Wallet'),),
+              Tab(icon: Icon(Icons.card_giftcard),child: Text('Gift'),),
+              Tab(icon: Icon(Icons.account_tree_outlined),child: Text('Connected'),),
+            ],
+          ),
         ),
+
         drawer: Drawer(
           child: ListView(
             children: [
@@ -184,23 +205,20 @@ class HomeActivity extends StatelessWidget {
           },
         ),
         body:
-        GridView.builder( gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1 , crossAxisSpacing: 10),
-            itemCount: data.length,itemBuilder: (context, index) {
-          return GestureDetector(
-            child:
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 250,
-                // width: 50,//wont work if fit property is present in Image widget
-                child: Image.network(data[index]['Image']??'https://img.freepik.com/free-photo/beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=360&t=st=1694798221~exp=1694798821~hmac=0bae47443eb62f7f11bfe0764097c886faa3b02fdb8fdae2e1a9d163eba6b343',fit: BoxFit.fill),
-              ),
-            ),
-            onDoubleTap: (){mySnackbar(context, data[index]['name']);},
+       TabBarView(
+         children:[
+            homePage(),
+           add(),
+           setting(),
+           wallet(),
+           gift(),
+           connected()
+          ]
 
-          );
-        }
-        )
+       )
+
+
+    )
     );
   }
 }
