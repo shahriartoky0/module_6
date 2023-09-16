@@ -1,19 +1,9 @@
-/*Requirements:
-
-An app bar titled "My Shopping List.", with a cart icon.
-
-A list of at least 5 shopping items displayed using ListTile widgets.
-
-Each item should have an icon (use any icon) and a name (name of any object).
-Apply suitable styling for visual appeal.
- */
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 main()
 {
-  runApp( const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget{
@@ -21,49 +11,34 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return (MaterialApp(home: HomeActivity(),debugShowCheckedModeBanner: false));
+    return MaterialApp(home: HomeActivity());
   }
+
 
 }
+class HomeActivity extends StatelessWidget
+{
+  const HomeActivity({super.key});
 
-class HomeActivity extends StatelessWidget{
-
-  List <String> listitem =['Apples','Bananas','Bread','Milk','Eggs' ];
-
-  mySnackbar(context , message)
-  {
-    return  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Shopping List.'),
-        centerTitle: true,
-        actions: [
-          Icon(Icons.shopping_cart),
-          Text('  '),
-        ],
+        appBar: AppBar(
+      title: Text("Photo Gallery"),
+          centerTitle: true,
+),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 10,),
+            RichText(text: TextSpan(text: ' Welcome to My Photo Gallery!',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),),
+            TextField(decoration: InputDecoration(
+                label: Text('Search for photos',style: TextStyle(color: Colors.grey),),suffixIcon: Icon(Icons.image,color: Colors.greenAccent,)))
+
+          ],
+        ),
       ),
-      body: ListView.separated(itemBuilder: (context,index)
-          {
-            return GestureDetector(
-             child: ListTile(
-               leading: Icon(Icons.shopping_bag_outlined),
-               title: Text(listitem[index]),
-             ),
-              onTap: (){mySnackbar(context, 'You ordered ${listitem[index]}');},
-            );
-          }
-          , separatorBuilder: (context, index){
-        return Column(
-          children: [Divider()],
-        );
-          }, itemCount: listitem.length),
-
-
-    )
-    ;
+    );
   }
 
 }

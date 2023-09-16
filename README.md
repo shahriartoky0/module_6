@@ -1,5 +1,4 @@
 # module_6
-![Screenshot!](AppScreenshot.png)
 A new Flutter project.
 
 ## Getting Started
