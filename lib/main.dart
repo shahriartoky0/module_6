@@ -104,9 +104,16 @@ class HomeActivity extends StatelessWidget
 
 
 
+
+
           ],
         ),
       ),
+      floatingActionButton: Column(mainAxisAlignment: MainAxisAlignment.end,children: [Row( mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(onPressed: (){}, child: Icon(Icons.upload),elevation: 20,),
+        ],
+      )]),
     );
   }
 
