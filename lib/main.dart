@@ -43,19 +43,19 @@ class HomeActivity extends StatelessWidget
       title: Text("Photo Gallery"),
           centerTitle: true,
 ),
-      body: Column(
-        children: [
-          SizedBox(height: 10,),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 10,),
 
-          RichText(text: TextSpan(text: ' Welcome to My Photo Gallery!',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),),
-          SizedBox(height: 20,),
-          Container(margin: EdgeInsets.fromLTRB(15, 1, 15, 20),
-            child:
-            TextField(decoration: InputDecoration(
-                label: Text('Search for photos',style: TextStyle(color: Colors.grey),),suffixIcon: Icon(Icons.image,color: Colors.greenAccent,),border: OutlineInputBorder())),
-          ),
-          Expanded(
-            child: GridView.builder(gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 0),
+            RichText(text: TextSpan(text: ' Welcome to My Photo Gallery!',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.black)),),
+            SizedBox(height: 20,),
+            Container(margin: EdgeInsets.fromLTRB(15, 1, 15, 20),
+              child:
+              TextField(decoration: InputDecoration(
+                  label: Text('Search for photos',style: TextStyle(color: Colors.grey),),suffixIcon: Icon(Icons.image,color: Colors.greenAccent,),border: OutlineInputBorder())),
+            ),
+            GridView.builder(shrinkWrap: true,gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 0),
               itemCount: listImages.length,
               itemBuilder: (context, index){
                 return
@@ -75,11 +75,37 @@ class HomeActivity extends StatelessWidget
                   );
               },
             ),
-          )
+            const SizedBox(height: 30),
+            ListView.separated(
+              shrinkWrap: true,
+              itemCount: 10, // Adjust the number of ListTiles as needed
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: RichText(text: TextSpan(text: 'Photo: ', children: [TextSpan(text: '$index',style: TextStyle(color: Colors.purple,fontWeight: FontWeight.bold,fontSize: 20))]),),
+                  subtitle: RichText(text: TextSpan(text: 'Description of Photo : ',style: TextStyle(color: Colors.grey,), children: [TextSpan(text: '$index',style: TextStyle(color: Colors.green,))]),),
+                    leading:
+                    Container(
+                      width: 50,
+                        height: 50,
+                       decoration: BoxDecoration(border: Border.all(width: 2,),borderRadius: BorderRadius.all(Radius.circular(100))),
+                        child: 
+                        ClipRRect(borderRadius: BorderRadius.all(Radius.circular(100)),child: Image.network(listImages[index],fit: BoxFit.cover)))
+                ,
+                  onTap: (){},
+                  hoverColor: Colors.lightGreenAccent,
+                );
+
+
+              },
+              separatorBuilder: (context, index){
+                return const Column(children: [Divider()]);
+              },
+            ),
 
 
 
-        ],
+          ],
+        ),
       ),
     );
   }
