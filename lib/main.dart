@@ -88,8 +88,8 @@ class HomeActivity extends StatelessWidget
               itemCount: listImages2.length, // Adjust the number of ListTiles as needed
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: RichText(text: TextSpan(text: 'Photo: ', children: [TextSpan(text: '$index',style: const TextStyle(color: Colors.purple,fontWeight: FontWeight.bold,fontSize: 20))]),),
-                  subtitle: RichText(text: TextSpan(text: 'Description of Car : ',style: const TextStyle(color: Colors.grey,), children: [TextSpan(text: '$index',style: const TextStyle(color: Colors.green,))]),),
+                  title: RichText(text: TextSpan(text: 'Photo: ', children: [TextSpan(text: '${index+1}',style: const TextStyle(color: Colors.purple,fontWeight: FontWeight.bold,fontSize: 20))]),),
+                  subtitle: RichText(text: TextSpan(text: 'Description of Car : ',style: const TextStyle(color: Colors.grey,), children: [TextSpan(text: '${index+1}',style: const TextStyle(color: Colors.green,))]),),
                     leading:
                     Container(
                       width: 50,
@@ -98,7 +98,7 @@ class HomeActivity extends StatelessWidget
                         child: 
                         ClipRRect(borderRadius: const BorderRadius.all(Radius.circular(100)),child: Image.network(listImages2[index],fit: BoxFit.cover)))
                 ,
-                  onTap: (){mySnackBar(context, 'Description of Photo : $index');},
+                  onTap: (){mySnackBar(context, 'Description of Photo : ${index+1}');},
                   hoverColor: Colors.lightGreenAccent,
                 );
 
