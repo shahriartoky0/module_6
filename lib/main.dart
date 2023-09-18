@@ -118,7 +118,7 @@ class HomeActivity extends StatelessWidget
       ),
       floatingActionButton: Column(mainAxisAlignment: MainAxisAlignment.end,children: [Row( mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          FloatingActionButton(onPressed: (){mySnackBar(context, 'Photos Uploaded Successfully!');}, child: Icon(Icons.upload),elevation: 20,),
+          FloatingActionButton(onPressed: (){mySnackBar(context, 'Photos Uploaded Successfully!');},elevation: 20, child: const Icon(Icons.upload),),
         ],
       )]),
     );

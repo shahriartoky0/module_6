@@ -2,7 +2,8 @@
 A new Flutter project.
 
 ## Getting Started
-![App_Screenshot!](app_view.png)
+![App View1!](app_view1.png)
+![App View2!](app_view2.png)
 
 This project is a starting point for a Flutter application.
 
